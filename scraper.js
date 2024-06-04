@@ -21,9 +21,10 @@ const scrapeWebsite = async (url) => {
     const links = await page.evaluate(() => {
         // get all anchors that are children of 'titleline' spans
         const anchors = document.querySelectorAll('span.titleline > a');
+        console.log(anchors, '  anchors');
         const result = []; //initialize result array
 
-        // loopt through anchors
+        // loop through anchors
         anchors.forEach(anchor => {
             //if result array length is less than ten push new element
           result.length < 10 ? result.push( [anchor.innerHTML, anchor.href] ) : null;
@@ -47,5 +48,5 @@ const scrapeWebsite = async (url) => {
 
 //invoke function immediately
 (async () => {
-    scrapeWebsite(url);
+    await scrapeWebsite(url);
 })();
